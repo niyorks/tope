@@ -10,7 +10,7 @@ Open `index.html` in a browser. No build step.
 
 ## Brand colours
 
-The four brand colours live at the top of the `<style>` block as `--brand-ink`, `--brand-deep`, `--brand-signal` and `--brand-warm`. The WebGL shader reads the same tokens, so changing them there updates the whole page.
+The four brand colours live at the top of the `<style>` block as `--peacock`, `--neon`, `--cream` and `--sand`. The WebGL shader reads the same tokens, so changing them there updates the whole page.
 
 ## Private beta
 
