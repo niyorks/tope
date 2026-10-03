@@ -9,9 +9,9 @@ Open `index.html` in a browser. No build step.
 * GSAP 3 and ScrollTrigger for the load sequence, scroll scenes and the product preview
 * Faculty Glyphic for headings (48px max), Inter for body text (16px max)
 
-## Brand colours
+## Colours
 
-The four brand colours live at the top of the `<style>` block as `--peacock`, `--neon`, `--cream` and `--sand`. The WebGL shader reads the same tokens, so changing them there updates the whole page.
+The palette follows the r.Potential direction and lives at the top of the `<style>` block: `--ink` (warm near-black), `--glow` (orange), `--amber`, `--peach`, `--sky`, `--rust`, `--paper` and `--sand`. The WebGL hero reads `--ink`, `--glow`, `--amber` and `--paper`, so changing them there updates the whole page.
 
 ## Private beta
 
