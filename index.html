@@ -15,6 +15,7 @@
     --surface:#FFFFFF;
     --tint:#E9E9E7;
     --line:#E4E4E1;
+    --line-soft:#EDEDEA;  /* dividers inside cards, lighter than card edges */
     --ink:#0B0B0C;
     --ink-2:#55565A;
     --ink-3:#8A8B8F;
@@ -123,7 +124,7 @@
     box-shadow:0 0 0 1px rgba(59,118,232,.5) inset,0 8px 26px rgba(59,118,232,.45)}
   .goal-label{text-align:right;margin:10px 0 18px;font-size:var(--t-body);color:var(--ink-3)}
   .goal-label span{color:var(--ink)}
-  .days{border-top:1px solid var(--line);padding-top:6px;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
+  .days{border-top:1px solid var(--line-soft);padding-top:6px;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
   .day{display:flex;justify-content:space-between;padding:8px 0;font-size:var(--t-body)}
   .day:nth-child(n+2){color:var(--ink-2)}
 
@@ -156,11 +157,12 @@
 
   /* Bottom cards */
   .count{font-size:var(--t-num);line-height:1;letter-spacing:var(--ls-num);margin:26px 0 6px}
-  .ask{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
-  .ask:first-of-type{margin-top:18px}
+  .asks{margin-top:24px;display:flex;flex-direction:column}
+  .ask{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--line-soft)}
+  .ask:last-child{padding-bottom:0}
   .ask .q{flex:1;font-size:var(--t-body)}
-  .ask .q small{display:block;font-size:var(--t-small);color:var(--ink-3)}
-  .ask .opts{display:flex;gap:6px}
+  .ask .q small{display:block;margin-top:2px;font-size:var(--t-small);color:var(--ink-3)}
+  .ask .opts{display:flex;gap:8px}
   .chip{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);font-size:var(--t-small);white-space:nowrap}
   .chip:hover{border-color:#C9C9C5}
   .chip.dark{background:var(--blue);border-color:var(--blue);color:#fff}
@@ -312,7 +314,8 @@
         <section class="card" aria-labelledby="needs-h">
           <div class="card-h"><h2 id="needs-h">Needs you</h2><span class="meta">Also on WhatsApp</span></div>
           <div class="count num" id="needs-count">2</div>
-          <div class="meta" style="margin-bottom:4px">answers before Scout can continue</div>
+          <div class="meta">answers before Scout can continue</div>
+          <div class="asks">
           <div class="ask" data-item>
             <div class="q">Right to work in the UK?<small>Northline Studio form</small></div>
             <div class="opts"><button class="chip dark" data-answer="Yes">Yes</button><button class="chip" data-answer="No">No</button></div>
@@ -320,6 +323,7 @@
           <div class="ask" data-item>
             <div class="q">Message to Ada Okafor<small>Hiring Lead, Kora Pay</small></div>
             <div class="opts"><button class="chip">Read</button><button class="chip dark" data-answer="Approved">Approve</button></div>
+          </div>
           </div>
         </section>
 
