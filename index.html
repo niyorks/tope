@@ -57,10 +57,13 @@
   .app{display:flex;min-height:100vh}
   .side{width:268px;flex:none;padding:20px 12px 16px;display:flex;flex-direction:column;gap:22px;position:sticky;top:0;height:100vh}
   .side-top{display:flex;justify-content:space-between;align-items:center;padding:0 10px;color:var(--ink-2)}
-  .ws{display:flex;align-items:center;gap:12px;height:48px;padding:0 12px 0 8px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
-  .ws .mark{width:32px;height:32px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:var(--t-small)}
-  .ws span{flex:1;font-size:var(--t-body)}
-  .ws .mark{flex:none}
+  .ws{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px 10px 10px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(11,11,12,.04);text-align:left;transition:border-color .15s}
+  .ws:hover{border-color:#D3D3CF}
+  .ws .mark{width:38px;height:38px;flex:none;border-radius:11px;background:var(--blue);display:grid;place-items:center;box-shadow:inset 0 -1px 0 rgba(0,0,0,.12)}
+  .ws-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .ws-name{font-size:var(--t-body);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ws-sub{font-size:var(--t-small);line-height:1.3;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ws-caret{flex:none;color:var(--ink-3)}
   .nav{display:flex;flex-direction:column;gap:2px}
   .nav a{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:12px;color:var(--ink-2);font-size:var(--t-body)}
   .nav a:hover{background:var(--tint);color:var(--ink)}
@@ -211,8 +214,9 @@
     </div>
 
     <button class="ws" aria-label="Switch search profile">
-      <span class="mark">S</span><span style="text-align:left">Scout</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      <span class="mark" aria-hidden="true"><svg width="20" height="17" viewBox="0 0 28 24"><path d="M2 22V6a4 4 0 0 1 4-4h8a8 8 0 0 1 8 8v2h-6v-2a2 2 0 0 0-2-2H8v14z" fill="#fff"/><rect x="16" y="16" width="5" height="6" fill="#fff"/><rect x="23" y="16" width="5" height="6" fill="#fff"/></svg></span>
+      <span class="ws-text"><span class="ws-name">Temitope's search</span><span class="ws-sub">Product ops · Remote</span></span>
+      <svg class="ws-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9 5-5 5 5M7 15l5 5 5-5"/></svg>
     </button>
 
     <nav class="nav" aria-label="Workspace">
