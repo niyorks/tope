@@ -45,6 +45,9 @@
   button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
   :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
   .num{font-variant-numeric:tabular-nums}
+  /* Big display numbers use proportional figures so a narrow 1 doesn't leave a gap.
+     Tabular figures stay on numbers that stack in columns (day list, chart axis). */
+  .big,.goal-nums .v,.count,.wide .totals b,.layer .right{font-variant-numeric:proportional-nums}
   .fade{opacity:.4}
 
   /* Shell */
