@@ -18,8 +18,7 @@
     --ink:#0B0B0C;
     --ink-2:#55565A;
     --ink-3:#8A8B8F;
-    --night:#0B0B0C;
-    --night-2:#1C1C1F;
+    --night:#050506;  /* the one black surface */
     --blue:#3B76E8;
     --blue-2:#2F64D4;
     --mint:#D6E8DF;
@@ -34,6 +33,9 @@
     --t-head:22px;   /* card titles */
     --t-body:16px;   /* everything you read */
     --t-small:13px;  /* labels, captions, axis */
+    --ls-num:-0.02em;    /* letter spacing on big numbers */
+    --ls-title:-0.01em;  /* letter spacing on the page title */
+    --figures:proportional-nums;  /* big numbers: proportional or tabular */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -47,7 +49,7 @@
   .num{font-variant-numeric:tabular-nums}
   /* Big display numbers use proportional figures so a narrow 1 doesn't leave a gap.
      Tabular figures stay on numbers that stack in columns (day list, chart axis). */
-  .big,.goal-nums .v,.count,.wide .totals b,.layer .right{font-variant-numeric:proportional-nums}
+  .big,.goal-nums .v,.count,.wide .totals b,.layer .right{font-variant-numeric:var(--figures)}
   .fade{opacity:.4}
 
   /* Shell */
@@ -80,7 +82,7 @@
 
   /* Header */
   .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-  h1{margin:0;font-size:var(--t-title);line-height:1.05;letter-spacing:-.01em;flex:1}
+  h1{margin:0;font-size:var(--t-title);line-height:1.05;letter-spacing:var(--ls-title);flex:1}
   .pill{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:999px;font-size:var(--t-body);white-space:nowrap}
   .pill.light{background:var(--surface);border:1px solid var(--line)}
   .pill.dark{background:var(--blue);color:#fff}
@@ -101,9 +103,9 @@
 
   /* Black balance style card with stacked colour cards */
   .stack{padding:0;border:0;background:transparent;display:flex;flex-direction:column}
-  .hero{background:linear-gradient(180deg,#000 0%,#1B1B1E 100%);color:#fff;border-radius:var(--r) var(--r) 0 0;padding:26px 28px 52px}
+  .hero{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.08) 100%),var(--night);color:#fff;border-radius:var(--r) var(--r) 0 0;padding:26px 28px 52px}
   .hero .meta{color:#7C7D82}
-  .big{font-size:var(--t-hero);line-height:1;letter-spacing:-.02em;margin:44px 0 10px}
+  .big{font-size:var(--t-hero);line-height:1;letter-spacing:var(--ls-num);margin:44px 0 10px}
   .hero .sub{font-size:var(--t-small);color:#A9AAAE}
   .hero .sub span{color:#fff}
   .layer{display:flex;align-items:center;justify-content:space-between;padding:22px 28px 46px;border-radius:var(--r) var(--r) 0 0;margin-top:-26px;font-size:var(--t-head)}
@@ -114,7 +116,7 @@
 
   /* Weekly goal card */
   .goal-nums{display:flex;justify-content:space-between;align-items:baseline;margin:34px 0 18px}
-  .goal-nums .v{font-size:var(--t-num);line-height:1;letter-spacing:-.02em}
+  .goal-nums .v{font-size:var(--t-num);line-height:1;letter-spacing:var(--ls-num)}
   .track{height:56px;border-radius:16px;background:var(--tint);position:relative}
   .fill{position:absolute;inset:0 auto 0 0;border-radius:16px;
     background:linear-gradient(90deg,#9DBBF5 0%,var(--blue) 45%,#7FA6F2 100%);
@@ -153,7 +155,7 @@
   .months span.on{color:var(--blue)}
 
   /* Bottom cards */
-  .count{font-size:var(--t-num);line-height:1;letter-spacing:-.02em;margin:26px 0 6px}
+  .count{font-size:var(--t-num);line-height:1;letter-spacing:var(--ls-num);margin:26px 0 6px}
   .ask{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
   .ask:first-of-type{margin-top:18px}
   .ask .q{flex:1;font-size:var(--t-body)}
