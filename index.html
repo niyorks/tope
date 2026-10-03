@@ -6,9 +6,9 @@
 <meta name="description" content="Scout finds roles that fit, tailors your CV and helps apply for you. Get on with your life while your search moves forward.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@400&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: calm editorial page on light beige. A full-bleed dark fluted glass hero, then rounded and dark beige blocks carry the visuals; peacock blue is for type and controls, neon green for small moments of progress. */
+/* Layout: calm editorial page on light beige, after the r.Potential direction. A full-bleed dark fluted glass hero, then two-tone rules, small corners, serif statements and light-beam panels; and dark beige blocks carry the visuals; peacock blue is for type and controls, neon green for small moments of progress. */
 :root {
   /* Brand colours */
   --peacock: #0D2533;
@@ -25,18 +25,19 @@
   --line-2: rgba(13, 37, 51, .2);
   --neon-soft: rgba(223, 250, 116, .55);
 
-  --font-display: "Parkinsans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Faculty Glyphic", Optima, Candara, "Gill Sans", "Segoe UI", sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --h1: clamp(2.5rem, 5vw, 4rem);          /* max 64px */
-  --h2: clamp(2rem, 3.4vw, 3rem);           /* max 48px */
-  --h3: clamp(1.3rem, 1.7vw, 1.5rem);
-  --body: 1.0625rem;
+  --h1: clamp(2.25rem, 3.4vw, 3rem);       /* max 48px */
+  --h2: clamp(1.875rem, 2.8vw, 2.5rem);     /* max 40px */
+  --h3: 1.375rem;
+  --statement: clamp(1.25rem, 1.6vw, 1.5rem);
+  --body: 1rem;                              /* max 16px */
   --small: .875rem;
 
   --gutter: clamp(16px, 4vw, 56px);
-  --radius-frame: clamp(20px, 2.4vw, 32px);
-  --radius-card: 20px;
+  --radius-frame: 10px;
+  --radius-card: 8px;
   --ease: cubic-bezier(.2, .7, .1, 1);
   color-scheme: light;
 }
@@ -48,14 +49,23 @@ body {
   font-family: var(--font-body); font-size: var(--body); line-height: 1.6;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
 p { margin: 0; }
 a { color: inherit; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--peacock); outline-offset: 3px; border-radius: 8px; }
 .wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: var(--gutter); }
-.lede { font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); color: var(--text-2); line-height: 1.6; max-width: 34rem; }
-.h2 { font-size: var(--h2); line-height: 1.08; }
+.lede { font-size: var(--body); color: var(--text-2); line-height: 1.65; max-width: 32rem; }
+.h2 { line-height: 1.12; }
+
+/* Two-tone rule above section headings: a dark run into a light one */
+.ruled { padding-top: 22px; background:
+  linear-gradient(var(--peacock), var(--peacock)) no-repeat 0 0 / 62% 1px,
+  linear-gradient(var(--line-2), var(--line-2)) no-repeat 0 0 / 100% 1px; }
+
+/* Light beams: sharp shafts of light that run from dark to bright */
+.beams { position: relative; isolation: isolate; overflow: hidden; --ba: 0deg; }
+.h2 { font-size: var(--h2); }
 
 /* Highlighter: the neon moment behind key words */
 .hl { position: relative; white-space: nowrap; z-index: 0; }
@@ -88,7 +98,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .logo .mark, .logo .mark-line, .nav .btn-primary, .nav .btn-primary .arr { transition: fill .3s, stroke .3s, background-color .3s, color .3s; }
 .nav.solid { background: rgba(249, 245, 235, .86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
-.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-size: 1.375rem; letter-spacing: -0.02em; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-size: 1.375rem; letter-spacing: 0; }
 .logo svg { width: 28px; height: 28px; }
 .nav-links { display: flex; gap: 32px; font-size: .9375rem; }
 .nav-links a { text-decoration: none; color: var(--text-2); transition: color .3s; }
@@ -112,23 +122,23 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   min-height: min(100svh, 980px); display: flex; flex-direction: column; justify-content: flex-end;
 }
 .hero .wrap, .nav .wrap { max-width: none; padding-inline: clamp(16px, 1.7vw, 32px); }
-.hero > canvas, .final canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -1; }
+.hero > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -1; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(24px, 3vw, 48px); align-items: stretch; min-height: clamp(440px, 58vh, 560px); }
 .hero-main { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding-top: 28px; border-top: 1px solid rgba(249, 245, 235, .22); }
 .hero-bottom { margin-top: auto; display: grid; gap: 24px; justify-items: start; }
-.hero h1 { font-size: var(--h1); line-height: 1.05; letter-spacing: -0.03em; }
+.hero h1 { font-size: var(--h1); line-height: 1.1; letter-spacing: -0.01em; }
 .hero .lede { color: var(--cream); opacity: .78; }
 .hero .hl { color: var(--neon); }
 .hero .hl::before { height: .06em; bottom: -.04em; }
-.hero .btn-primary { background: var(--neon); color: var(--peacock); }
-.hero .btn-primary:hover { background: var(--cream); }
-.hero .btn-primary .arr { background: var(--peacock); color: var(--neon); }
+.hero .btn-primary, .final .btn-primary { background: var(--neon); color: var(--peacock); }
+.hero .btn-primary:hover, .final .btn-primary:hover { background: var(--cream); }
+.hero .btn-primary .arr, .final .btn-primary .arr { background: var(--peacock); color: var(--neon); }
 .hero .reassure { color: rgba(249, 245, 235, .72); }
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
 .reassure { display: flex; align-items: center; gap: 10px; font-size: var(--small); color: var(--text-2); }
 .reassure i { width: 8px; height: 8px; border-radius: 50%; background: var(--peacock); box-shadow: 0 0 0 4px var(--neon); flex: none; }
-.hero .btn-ghost { color: var(--cream); border-color: rgba(249, 245, 235, .3); background: rgba(13, 37, 51, .35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.hero .btn-ghost:hover { border-color: var(--cream); }
+.hero .btn-ghost, .final .btn-ghost { color: var(--cream); border-color: rgba(249, 245, 235, .3); background: rgba(13, 37, 51, .35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.hero .btn-ghost:hover, .final .btn-ghost:hover { border-color: var(--cream); }
 
 .live {
   align-self: start;
@@ -157,14 +167,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* Problem */
 .problem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
 .problem .copy { display: grid; gap: 22px; }
-.problem .turn { font-size: 1.1875rem; line-height: 1.5; color: var(--text); padding-top: 4px; }
+.problem .turn { font-family: var(--font-display); font-size: var(--statement); line-height: 1.4; color: var(--text); padding-top: 4px; max-width: 30rem; }
 .mess { padding: clamp(20px, 3vw, 40px); }
 .path-card { background: var(--card); border-radius: var(--radius-card); padding: 20px; box-shadow: 0 1px 0 var(--line); min-width: 0; }
 .path-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: var(--small); color: var(--text-2); padding: 0 2px 14px; }
 .path-title b { font-family: var(--font-display); font-weight: 400; font-size: 1.125rem; color: var(--text); }
 .path-list { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; padding-left: 24px; }
 .path-list::before { content: ""; position: absolute; left: 7px; top: 18px; bottom: 18px; width: 2px; border-radius: 2px; background: var(--peacock); transform-origin: top; transform: scaleY(var(--route, 1)); }
-.chip { position: relative; display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 12px; background: var(--cream); border: 1px solid var(--line); font-size: .9375rem; line-height: 1.35; min-width: 0; }
+.chip { position: relative; display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 8px; background: var(--cream); border: 1px solid var(--line); font-size: .9375rem; line-height: 1.35; min-width: 0; }
 .chip::before { content: ""; position: absolute; left: -22px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--neon); border: 2px solid var(--peacock); }
 .chip .tag { font-size: .6875rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 3px 7px; border-radius: 6px; background: var(--sand); white-space: nowrap; }
 .chip .t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -175,12 +185,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* Journey */
-.journey { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 5vw, 72px); }
-.stage { display: grid; grid-template-rows: auto 1fr auto; gap: 28px; padding: clamp(24px, 2.4vw, 32px); border-radius: var(--radius-card); background: var(--sand); min-width: 0; }
-.stage-num { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--cream); font-size: .875rem; font-variant-numeric: tabular-nums; }
-.stage .art { height: 160px; border-radius: 14px; background: var(--cream); display: grid; place-items: center; overflow: hidden; }
+.journey { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); margin-top: clamp(40px, 5vw, 72px); }
+.stage { display: grid; grid-template-rows: auto auto auto; gap: 20px; padding-top: 18px; border-top: 1px solid var(--line-2); min-width: 0; }
+.stage-num { font-size: .875rem; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.stage .art { height: 200px; border-radius: var(--radius-card); background: var(--sand); display: grid; place-items: center; overflow: hidden; }
 .stage .art svg { width: 150px; height: 130px; }
-.stage h3 { font-size: var(--h3); line-height: 1.2; margin-bottom: 10px; }
+.stage h3 { font-size: var(--h3); line-height: 1.25; margin-bottom: 8px; }
 .stage p { color: var(--text-2); }
 @media (max-width: 860px) { .journey { grid-template-columns: minmax(0, 1fr); } }
 
@@ -189,7 +199,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .steps { display: grid; gap: 4px; }
 .steps button {
   position: relative; width: 100%; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: center; text-align: left;
-  padding: 14px; border-radius: 14px; border: 0; background: transparent; color: var(--text-2);
+  padding: 14px; border-radius: 8px; border: 0; background: transparent; color: var(--text-2);
   font: 400 1rem/1.35 var(--font-body); cursor: pointer; overflow: hidden; transition: background-color .3s, color .3s;
 }
 .steps button:hover { color: var(--text); background: rgba(249, 245, 235, .6); }
@@ -212,15 +222,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .disclaimer i { width: 6px; height: 6px; border-radius: 50%; background: var(--peacock); flex: none; }
 
 .role { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 16px; align-items: center; }
-.org { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: var(--sand); font-family: var(--font-display); font-size: 1.25rem; }
-.view h4 { font-size: 1.375rem; line-height: 1.2; }
+.org { width: 52px; height: 52px; border-radius: 8px; display: grid; place-items: center; background: var(--sand); font-family: var(--font-display); font-size: 1.25rem; }
+.view h4 { font-size: 1.375rem; line-height: 1.25; }
 .meta { color: var(--text-2); font-size: .9375rem; }
 .badge { display: inline-flex; padding: 6px 12px; border-radius: 999px; background: var(--neon); font-size: .8125rem; font-weight: 500; white-space: nowrap; }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; background: var(--cream); border: 1px solid var(--line); font-size: .875rem; }
 .pill.ok::before { content: "✓"; width: 16px; height: 16px; border-radius: 50%; background: var(--neon); display: grid; place-items: center; font-size: 10px; font-weight: 700; }
 .pill.ask { border-color: var(--peacock); }
-.box { background: var(--cream); border-radius: 16px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.box { background: var(--cream); border-radius: 8px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
 .box-title { font-size: .8125rem; color: var(--text-2); font-weight: 500; }
 .reasons { display: grid; gap: 12px; }
 .reasons li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; font-size: .9375rem; padding-bottom: 12px; border-bottom: 1px dashed var(--line-2); }
@@ -234,7 +244,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .split { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 14px; }
 .qa { display: grid; gap: 2px; font-size: .9375rem; }
 .qa span { color: var(--text-2); font-size: .8125rem; }
-.qa.needs { padding: 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--peacock); }
+.qa.needs { padding: 12px; border-radius: 8px; background: var(--card); border: 1px solid var(--peacock); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .fake { display: inline-flex; align-items: center; min-height: 42px; padding: 0 18px; border-radius: 999px; font-size: .9375rem; font-weight: 500; }
 .fake.dark { background: var(--peacock); color: var(--cream); }
@@ -244,10 +254,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 20px; font-size: .9375rem; margin: 0; }
 .kv dt { color: var(--text-2); }
 .kv dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.msg { display: grid; gap: 8px; padding: 16px; border-radius: 14px; background: var(--cream); font-size: .9375rem; }
+.msg { display: grid; gap: 8px; padding: 16px; border-radius: 8px; background: var(--cream); font-size: .9375rem; }
 .msg .from { display: flex; justify-content: space-between; gap: 12px; font-size: .8125rem; color: var(--text-2); }
 .msg .from b { color: var(--text); font-weight: 500; }
-.next { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 14px; background: var(--neon); font-size: .9375rem; }
+.next { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 8px; background: var(--neon); font-size: .9375rem; }
 @media (max-width: 860px) {
   .demo { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; }
@@ -271,11 +281,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .seg label { padding: 8px 14px; border-radius: 999px; font-size: .875rem; font-weight: 500; color: var(--text-2); cursor: pointer; transition: color .3s, background-color .3s; white-space: nowrap; }
 .seg input:checked + label { background: var(--peacock); color: var(--cream); }
 .seg input:focus-visible + label { outline: 2px solid var(--peacock); outline-offset: 2px; }
-.summary { margin-top: 18px; padding: 16px 18px; border-radius: 14px; background: var(--neon); display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 14px; font-size: .9375rem; min-height: 78px; align-items: center; }
+.summary { margin-top: 18px; padding: 16px 18px; border-radius: 8px; background: var(--neon); display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 14px; font-size: .9375rem; min-height: 78px; align-items: center; }
 .summary i { width: 10px; height: 10px; border-radius: 50%; background: var(--peacock); }
 .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(48px, 6vw, 80px); }
 .point { display: grid; gap: 10px; align-content: start; padding-top: 22px; border-top: 1px solid var(--line-2); }
-.point h3 { font-size: 1.1875rem; line-height: 1.3; letter-spacing: -0.01em; }
+.point h3 { font-size: 1.25rem; line-height: 1.3; }
 .point p { color: var(--text-2); }
 @media (max-width: 860px) {
   .control, .points { grid-template-columns: minmax(0, 1fr); }
@@ -300,21 +310,28 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .diff .now { background: var(--cream); border-left: 3px solid var(--neon); padding: 8px 12px; border-radius: 4px 8px 8px 4px; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px; }
 .facts span { font-size: .8125rem; padding: 5px 10px; border-radius: 8px; background: var(--cream); }
-.qcard { padding: 12px 14px; border-radius: 12px; background: var(--cream); display: grid; gap: 2px; }
+.qcard { padding: 12px 14px; border-radius: 8px; background: var(--cream); display: grid; gap: 2px; }
 .qcard span { font-size: .8125rem; color: var(--text-2); }
 .paper .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--line); font-size: .875rem; color: var(--text-2); }
 @media (max-width: 860px) { .profile { grid-template-columns: minmax(0, 1fr); } }
 
 /* Evenings */
-.evenings { background: var(--neon); border-radius: var(--radius-frame); padding: clamp(40px, 7vw, 104px) clamp(20px, 5vw, 72px); }
-.evenings .lede { color: var(--text); opacity: .78; }
+.evenings { border-radius: var(--radius-frame); padding: clamp(40px, 7vw, 104px) clamp(20px, 5vw, 72px);
+  background:
+    conic-gradient(from calc(8deg + var(--ba)) at 4% 104%,
+      transparent 0deg 4deg,
+      rgba(223, 250, 116, .95) 4deg, rgba(223, 250, 116, .25) 15deg, transparent 15deg 21deg,
+      rgba(249, 245, 235, .95) 21deg, rgba(223, 250, 116, .55) 29deg, transparent 29deg 37deg,
+      rgba(223, 250, 116, .6) 37deg, rgba(223, 250, 116, .05) 50deg, transparent 50deg 360deg),
+    linear-gradient(200deg, var(--cream) 10%, var(--sand) 70%); }
+.evenings .lede { color: var(--text); opacity: .8; }
 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 1vw, 12px); margin-top: clamp(40px, 5vw, 64px); }
 .day { display: grid; gap: 10px; min-width: 0; }
 .day > b { font-weight: 500; font-size: .8125rem; text-align: center; }
-.slot { position: relative; height: clamp(200px, 22vw, 260px); border-radius: 14px; background: rgba(13, 37, 51, .06); overflow: hidden; }
+.slot { position: relative; height: clamp(200px, 22vw, 260px); border-radius: 8px; background: rgba(249, 245, 235, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); overflow: hidden; }
 .slot .chores { position: absolute; inset: 6px; display: grid; gap: 6px; grid-template-rows: 1.2fr 1fr .8fr; }
-.slot .chores span { border-radius: 9px; background: rgba(13, 37, 51, .12); font-size: .75rem; padding: 8px; line-height: 1.25; transform-origin: top; overflow: hidden; }
-.slot .free { position: absolute; inset: 6px; border-radius: 9px; display: grid; place-items: center; font-family: var(--font-display); background: var(--cream); opacity: 0; }
+.slot .chores span { border-radius: 6px; background: rgba(13, 37, 51, .12); font-size: .75rem; padding: 8px; line-height: 1.25; transform-origin: top; overflow: hidden; }
+.slot .free { position: absolute; inset: 6px; border-radius: 6px; display: grid; place-items: center; font-family: var(--font-display); background: var(--cream); opacity: 0; }
 .times { display: flex; justify-content: space-between; margin-top: 12px; font-size: .75rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
 @media (max-width: 700px) {
   .slot .chores span { font-size: 0; padding: 0; }
@@ -322,9 +339,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* Final */
-.final { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--radius-frame); background: var(--sand); padding: clamp(72px, 10vw, 140px) clamp(20px, 5vw, 72px); text-align: center; }
-.final-inner { display: grid; gap: 24px; justify-items: center; }
-.final .lede { margin-inline: auto; }
+.final { border-radius: var(--radius-frame); color: var(--cream); padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px);
+  background:
+    conic-gradient(from calc(196deg + var(--ba)) at 86% -12%,
+      transparent 0deg 3deg,
+      rgba(223, 250, 116, .92) 3deg, rgba(223, 250, 116, .12) 14deg, transparent 14deg 19deg,
+      rgba(249, 245, 235, .7) 19deg, rgba(223, 250, 116, .18) 27deg, transparent 27deg 33deg,
+      rgba(223, 250, 116, .45) 33deg, transparent 47deg 360deg),
+    radial-gradient(90% 80% at 90% 0%, #1E4553 0%, transparent 70%),
+    var(--peacock); }
+.final-inner { display: grid; gap: 24px; justify-items: start; max-width: 34rem; }
+.final .lede { color: var(--cream); opacity: .78; }
 
 /* Footer */
 footer { padding-block: 48px 36px; }
@@ -385,7 +410,7 @@ footer { padding-block: 48px 36px; }
 
   <section class="section" aria-labelledby="problem-title">
     <div class="wrap problem">
-      <div class="copy">
+      <div class="copy ruled">
         <h2 class="h2" id="problem-title">Looking for work should not become another full-time job.</h2>
         <p class="lede">Search across endless tabs. Rewrite the same experience for every role. Fill in forms that already have the answers. Keep track of applications in scattered notes.</p>
         <p class="turn">Scout takes care of the repeatable work, so your energy stays with the decisions that matter.</p>
@@ -409,7 +434,7 @@ footer { padding-block: 48px 36px; }
 
   <section class="section" id="how" aria-labelledby="how-title" style="padding-top:0">
     <div class="wrap">
-      <div class="head"><h2 class="h2" id="how-title">Scout keeps your search moving.</h2></div>
+      <div class="head ruled"><h2 class="h2" id="how-title">Scout keeps your search moving.</h2></div>
       <ol class="journey">
         <li class="stage">
           <span class="stage-num">1</span>
@@ -459,7 +484,7 @@ footer { padding-block: 48px 36px; }
 
   <section class="section" id="preview" aria-labelledby="preview-title" style="padding-top:0">
     <div class="wrap">
-      <div class="head-split">
+      <div class="head-split ruled">
         <h2 class="h2" id="preview-title">From suitable role to submitted application.</h2>
         <p class="lede">Scout does the legwork in a clear sequence. You can see what it found, what it prepared and what happens next.</p>
       </div>
@@ -567,7 +592,7 @@ footer { padding-block: 48px 36px; }
   <section class="section" id="control" aria-labelledby="control-title" style="padding-top:0">
     <div class="wrap">
       <div class="control">
-        <div class="copy">
+        <div class="copy ruled">
           <h2 class="h2" id="control-title">You decide how much Scout can do.</h2>
           <p class="lede">Set your preferences once. Choose what Scout can prepare, what it can submit and when it needs to ask you.</p>
         </div>
@@ -654,7 +679,7 @@ footer { padding-block: 48px 36px; }
 
   <section class="section" aria-labelledby="evenings-title">
     <div class="wrap">
-      <div class="evenings">
+      <div class="evenings beams">
         <div class="head-split">
           <h2 class="h2" id="evenings-title">Get your evenings back.</h2>
           <p class="lede">You should not have to spend every night looking for work. Tell Scout what you want next, then return when there is something worth your attention.</p>
@@ -675,12 +700,11 @@ footer { padding-block: 48px 36px; }
 
   <section id="start" aria-labelledby="final-title">
     <div class="wrap">
-      <div class="final">
-        <canvas data-gl="final" aria-hidden="true"></canvas>
+      <div class="final beams">
         <div class="final-inner">
           <h2 class="h2" id="final-title">Let your search keep moving.</h2>
           <p class="lede">Start with your CV, set your preferences and let Scout handle the repeatable work.</p>
-          <div class="ctas" style="justify-content:center">
+          <div class="ctas">
             <a class="btn btn-primary" href="#start" data-cta="primary"><span class="cta-label">Put Scout to work</span><span class="arr" aria-hidden="true">→</span></a>
             <a class="btn btn-ghost" href="#how">See how it works</a>
           </div>
@@ -729,149 +753,8 @@ footer { padding-block: 48px 36px; }
   };
   const brand = { peacock: rgb('--peacock'), neon: rgb('--neon'), cream: rgb('--cream'), sand: rgb('--sand') };
 
-  /* ---------- WebGL: fluted glass. Soft lemon light behind ribbed glass of uneven widths. ---------- */
   const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const FRAG = `
-precision highp float;
-uniform vec2 uRes; uniform float uT; uniform vec2 uM; uniform vec2 uM2; uniform float uHover; uniform float uVel; uniform float uMode; uniform float uDpr;
-uniform vec3 cPea, cNeon, cCream, cSand;
-float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-float n(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f*f*(3.-2.*f);
-  return mix(mix(h(i), h(i+vec2(1,0)), u.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), u.x), u.y); }
-float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 4; i++) { v += a * n(p); p = p * 2.03 + 5.1; a *= .5; } return v; }
-
-// Light behind the glass: x = brightness, y = where light is allowed, z = raw texture
-vec3 scene(vec2 st, float t){
-  float asp = uRes.x / uRes.y;
-  vec2 p = vec2(st.x * asp, st.y);
-  float a = fbm(vec2(p.x * 3.4 + t * .05, p.y * .7 - t * .035));
-  float b = fbm(vec2(p.x * 1.3 - t * .025, p.y * .5 + 3.1 + t * .01));
-  float m;
-  if (uMode < .5) {
-    // Calm top left for the nav and headline; light gathers on the right and along the bottom.
-    m = smoothstep(.28, .95, st.x) + .6 * smoothstep(.5, .0, st.y) * smoothstep(-.1, .6, st.x);
-  } else {
-    // Calm centre for the closing message; light on both sides.
-    m = smoothstep(.14, .48, abs(st.x - .5));
-  }
-  m = clamp(m, 0., 1.);
-  float I = smoothstep(.38, .78, a * .75 + b * .55) * m;
-  return vec3(I, m, a);
-}
-
-void main(){
-  vec2 fc = gl_FragCoord.xy;
-  float t = uT;
-  float x = fc.x / uDpr;
-  // Uneven rib widths
-  float xw = x + 16. * sin(x / 103.) + 8. * sin(x / 37. + 1.3);
-  float W = 52.;
-  float rib = floor(xw / W);
-  float u = fract(xw / W);
-  float hr = h(vec2(rib, 3.7));
-
-  // Pointer: a fast point and a slow trailing point, both stretched vertically to follow the ribs
-  vec2 uv = (fc - .5 * uRes) / uRes.y;
-  vec2 d1 = (uv - uM) * vec2(1., .45);
-  vec2 d2 = (uv - uM2) * vec2(1., .3);
-  float f1 = exp(-dot(d1, d1) * 16.) * uHover;
-  float f2 = exp(-dot(d2, d2) * 9.) * uHover;
-
-  // Each rib refracts the light behind it like a vertical lens, and bends harder near the pointer
-  vec2 st = fc / uRes;
-  vec2 ss = st;
-  float bend = 1. + 3.2 * f1 + 1.5 * f2;
-  ss.x += (u - .5) * (.045 + .05 * hr) * bend;
-  ss.y += (hr - .5) * .05 + (u - .5) * .012 + (f1 * .05 + f2 * .03) * (hr - .5);
-  vec3 sc = scene(ss, t);
-  float I = sc.x;
-  if (uMode < .5) I *= .45 + .55 * hr;   // some ribs glow, some stay dim
-
-  // Light gathers under the pointer, with a shimmer when it moves quickly
-  float lit = .45 + .55 * sin(u * 3.14159);
-  I += (f1 * .6 + f2 * .28) * lit * (.35 + .65 * sc.y);
-  I += uVel * f2 * .6 * smoothstep(.3, .9, hr + sin(u * 6.283 + t * 3.) * .2);
-  I = clamp(I, 0., 1.);
-
-  vec3 c, shadow;
-  if (uMode < .5) {
-    // Dark: peacock glass with lemon light behind it
-    vec3 deep = cPea * .55;
-    shadow = cPea * .32;
-    c = mix(deep, cPea * 1.25, sc.y * smoothstep(.2, .7, sc.z) * .7);
-    c = mix(c, cNeon * .8, smoothstep(.08, .85, I) * .92);
-    c = mix(c, mix(cNeon, vec3(1.), .3), smoothstep(.75, 1., I) * .6);
-  } else {
-    shadow = mix(cSand, cPea, .3);
-    float sh = (1. - I) * sc.y * smoothstep(.2, .6, sc.z) * .8;
-    c = mix(cCream, shadow, sh);
-    c = mix(c, cNeon, I * .95);
-    c = mix(c, mix(cNeon, vec3(1.), .4), smoothstep(.72, 1., I) * .55);
-  }
-
-  // Glass: rounded shading across each rib, a dark seam and a thin highlight
-  float k = .35 + .65 * max(sc.y, f1);
-  float curv = sin(u * 3.14159);
-  c = mix(c, c * mix(.82, 1.06, curv), k);
-  float seam = smoothstep(.035, .0, u) + smoothstep(.965, 1., u);
-  c = mix(c, shadow, seam * .45 * k);
-  c += smoothstep(.04, .0, abs(u - .13)) * (.05 + .12 * f1) * k;
-
-  c += (h(fc + fract(t * 7.)) - .5) * .02;
-  gl_FragColor = vec4(c, 1.);
-}`;
-
   const noHover = matchMedia('(hover: none)').matches;
-  function makeGL(canvas, mode) {
-    const gl = canvas.getContext('webgl', { antialias: true, premultipliedAlpha: false });
-    if (!gl) return;
-    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; } return s; };
-    const vs = sh(gl.VERTEX_SHADER, VERT), fs = sh(gl.FRAGMENT_SHADER, FRAG);
-    if (!vs || !fs) return;
-    const pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr); gl.useProgram(pr);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    const U = k => gl.getUniformLocation(pr, k);
-    gl.uniform3fv(U('cPea'), brand.peacock); gl.uniform3fv(U('cNeon'), brand.neon);
-    gl.uniform3fv(U('cCream'), brand.cream); gl.uniform3fv(U('cSand'), brand.sand);
-    gl.uniform1f(U('uMode'), mode);
-    const uRes = U('uRes'), uT = U('uT'), uM = U('uM'), uM2 = U('uM2'), uHover = U('uHover'), uVel = U('uVel'), uDpr = U('uDpr');
-    const s = { mx: .3, my: 0, sx: .3, sy: 0, tx: .3, ty: 0, hv: 0, th: 0, vel: 0, visible: false, raf: 0, t0: performance.now() };
-    const draw = now => {
-      const dpr = Math.min(devicePixelRatio || 1, 1.5);
-      const w = Math.max(1, Math.round(canvas.clientWidth * dpr)), hgt = Math.max(1, Math.round(canvas.clientHeight * dpr));
-      if (canvas.width !== w || canvas.height !== hgt) { canvas.width = w; canvas.height = hgt; gl.viewport(0, 0, w, hgt); }
-      // Touch screens have no cursor, so a soft light drifts through the glass on its own
-      if (noHover && mode === 0) { const tt = now / 1000; s.tx = .22 * Math.sin(tt * .35) + .05; s.ty = .32 * Math.sin(tt * .23); s.th = .8; }
-      const px = s.mx, py = s.my;
-      s.mx += (s.tx - s.mx) * .14; s.my += (s.ty - s.my) * .14;
-      s.sx += (s.tx - s.sx) * .035; s.sy += (s.ty - s.sy) * .035;
-      s.hv += (s.th - s.hv) * .06;
-      s.vel = Math.min(1, s.vel * .92 + Math.hypot(s.mx - px, s.my - py) * 6);
-      gl.uniform2f(uRes, w, hgt); gl.uniform1f(uDpr, dpr);
-      gl.uniform1f(uT, reduce ? 20 : (now - s.t0) / 1000 + 20);
-      gl.uniform2f(uM, s.mx, s.my); gl.uniform2f(uM2, s.sx, s.sy);
-      gl.uniform1f(uHover, s.hv); gl.uniform1f(uVel, s.vel);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      if (!reduce && s.visible) s.raf = requestAnimationFrame(draw);
-    };
-    canvas.parentElement.addEventListener('pointermove', e => {
-      const r = canvas.getBoundingClientRect();
-      s.tx = (e.clientX - r.left - r.width / 2) / r.height;
-      s.ty = -(e.clientY - r.top - r.height / 2) / r.height;
-      s.th = 1;
-    }, { passive: true });
-    canvas.parentElement.addEventListener('pointerenter', () => { s.th = 1; });
-    canvas.parentElement.addEventListener('pointerleave', () => { s.th = 0; });
-    new IntersectionObserver(([e]) => {
-      s.visible = e.isIntersecting; cancelAnimationFrame(s.raf);
-      s.raf = requestAnimationFrame(draw);
-    }).observe(canvas);
-    if (reduce) addEventListener('resize', () => requestAnimationFrame(draw));
-  }
-
   /* ---------- Hero WebGL: blurred lemon glows seen through vertical glass blinds ----------
      Built in layers, the same way the reference scene is:
      1. a soft field of lemon glows on peacock black, stretched wide
@@ -978,7 +861,7 @@ void main(){
     if (reduce) addEventListener('resize', () => requestAnimationFrame(draw));
   }
 
-  document.querySelectorAll('canvas[data-gl]').forEach(c => c.dataset.gl === 'hero' ? makeGlass(c) : makeGL(c, 1));
+  document.querySelectorAll('canvas[data-gl="hero"]').forEach(makeGlass);
 
   /* ---------- Nav ---------- */
   const nav = document.getElementById('nav');
@@ -1085,6 +968,9 @@ void main(){
   gsap.fromTo('.hl', { '--hl': 0 }, { '--hl': 1, duration: 1, ease: 'expo.inOut', delay: .5 });
   gsap.from('.live', { y: 30, duration: 1.2, ease: 'expo.out', delay: .3 });
   gsap.from('.hero > canvas', { opacity: 0, duration: 1.6, ease: 'power2.out' });
+
+  // Light beams drift a few degrees, slowly
+  gsap.to('.beams', { '--ba': '5deg', duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 
   // Problem: the scattered pieces line up once, when the card comes into view.
   const chips = gsap.utils.toArray('#pathList .chip');

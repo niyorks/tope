@@ -4,9 +4,10 @@ Marketing site for Scout, the job search agent. Career profile by DR CV.
 
 Open `index.html` in a browser. No build step.
 
-* WebGL contour map with a moving route in the hero and final call to action (raw WebGL, no library)
+* WebGL fluted glass hero that reacts to the pointer (raw WebGL, no library)
+* CSS light-beam panels for the evenings section and the final call to action
 * GSAP 3 and ScrollTrigger for the load sequence, scroll scenes and the product preview
-* Parkinsans Regular for headings, Inter for body text
+* Faculty Glyphic for headings (48px max), Inter for body text (16px max)
 
 ## Brand colours
 
