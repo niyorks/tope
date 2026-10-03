@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@400&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: calm editorial page on light beige. A full-bleed fluted glass hero, then rounded and dark beige blocks carry the visuals; peacock blue is for type and controls, neon green for small moments of progress. */
+/* Layout: calm editorial page on light beige. A full-bleed dark fluted glass hero, then rounded and dark beige blocks carry the visuals; peacock blue is for type and controls, neon green for small moments of progress. */
 :root {
   /* Brand colours */
   --peacock: #0D2533;
@@ -78,6 +78,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* Nav */
 .nav { position: sticky; z-index: 60; top: env(safe-area-inset-top, 0px); z-index: 50; transition: background-color .3s, box-shadow .3s; }
+.nav:not(.solid) .logo, .nav:not(.solid) .nav-links a { color: var(--cream); }
+.nav:not(.solid) .nav-links a { opacity: .78; }
+.nav:not(.solid) .nav-links a:hover { opacity: 1; }
+.nav:not(.solid) .logo .mark { fill: var(--neon); }
+.nav:not(.solid) .logo .mark-line { stroke: var(--peacock); }
+.nav:not(.solid) .btn-primary { background: var(--neon); color: var(--peacock); }
+.nav:not(.solid) .btn-primary .arr { background: var(--peacock); color: var(--neon); }
+.logo .mark, .logo .mark-line, .nav .btn-primary, .nav .btn-primary .arr { transition: fill .3s, stroke .3s, background-color .3s, color .3s; }
 .nav.solid { background: rgba(249, 245, 235, .86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-size: 1.375rem; letter-spacing: -0.02em; }
@@ -99,33 +107,43 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* Hero: full-bleed fluted glass. The nav floats over it. */
 .hero {
-  position: relative; isolation: isolate; overflow: hidden; background: var(--cream);
+  position: relative; isolation: isolate; overflow: hidden; background: var(--peacock); color: var(--cream);
   margin-top: -76px; padding-top: calc(76px + clamp(64px, 14vh, 180px)); padding-bottom: clamp(28px, 4vw, 56px);
   min-height: min(100svh, 980px); display: flex; flex-direction: column; justify-content: flex-end;
 }
 .hero > canvas, .final canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -1; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(24px, 5vw, 96px); align-items: end; }
-.hero-main { display: grid; gap: 28px; justify-items: start; padding-top: 24px; border-top: 1px solid var(--line-2); }
+.hero-main { display: grid; gap: 28px; justify-items: start; padding-top: 24px; border-top: 1px solid rgba(249, 245, 235, .22); }
 .hero h1 { font-size: var(--h1); line-height: 1.05; letter-spacing: -0.03em; }
-.hero .lede { color: var(--text); opacity: .8; }
+.hero .lede { color: var(--cream); opacity: .78; }
+.hero .hl { color: var(--neon); }
+.hero .hl::before { height: .06em; bottom: -.04em; }
+.hero .btn-primary { background: var(--neon); color: var(--peacock); }
+.hero .btn-primary:hover { background: var(--cream); }
+.hero .btn-primary .arr { background: var(--peacock); color: var(--neon); }
+.hero .reassure { color: rgba(249, 245, 235, .72); }
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
 .reassure { display: flex; align-items: center; gap: 10px; font-size: var(--small); color: var(--text-2); }
 .reassure i { width: 8px; height: 8px; border-radius: 50%; background: var(--peacock); box-shadow: 0 0 0 4px var(--neon); flex: none; }
-.hero .btn-ghost { background: rgba(249, 245, 235, .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.hero .btn-ghost { color: var(--cream); border-color: rgba(249, 245, 235, .3); background: rgba(13, 37, 51, .35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.hero .btn-ghost:hover { border-color: var(--cream); }
 
 .live {
-  padding: 18px; border-top: 3px solid var(--peacock); border-radius: 2px 2px 18px 18px;
-  background: rgba(255, 253, 248, .8); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
-  box-shadow: 0 30px 60px -36px rgba(13, 37, 51, .4);
+  padding: 18px; border-top: 3px solid var(--neon); border-radius: 2px 2px 18px 18px; color: var(--cream);
+  background: rgba(13, 37, 51, .78); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .5);
+  --line: rgba(249, 245, 235, .14); --text: var(--cream); --text-2: rgba(249, 245, 235, .7); --text-3: rgba(249, 245, 235, .5);
 }
 .live-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: var(--small); color: var(--text-2); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .live-head b { color: var(--text); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
-.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--peacock); box-shadow: 0 0 0 3px var(--neon); animation: pulse 2.4s infinite; flex: none; }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--peacock); border: 1px solid var(--neon); box-shadow: 0 0 0 3px var(--neon); animation: pulse 2.4s infinite; flex: none; }
 @keyframes pulse { 50% { box-shadow: 0 0 0 6px var(--neon-soft); } }
 .feed li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .9375rem; line-height: 1.4; min-height: 70px; }
 .feed li:last-child { border-bottom: 0; padding-bottom: 0; }
 .ico { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--neon); font-size: 12px; font-weight: 600; }
 .ico.ask { background: var(--peacock); color: var(--neon); }
+.live .ico { color: var(--peacock); }
+.live .ico.ask { background: var(--cream); color: var(--peacock); }
 .feed time { font-size: .75rem; color: var(--text-3); font-variant-numeric: tabular-nums; padding-top: 2px; }
 .feed small { display: block; color: var(--text-2); font-size: .8125rem; }
 @media (max-width: 900px) {
@@ -322,7 +340,7 @@ footer { padding-block: 48px 36px; }
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="logo" href="#top" aria-label="Scout home">
-      <svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="9" fill="var(--peacock)"/><path d="M6 18c4.5 0 4.5-8 8-8s3.5 8 8 8" fill="none" stroke="var(--neon)" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 28 28" aria-hidden="true"><rect class="mark" width="28" height="28" rx="9" fill="var(--peacock)"/><path class="mark-line" d="M6 18c4.5 0 4.5-8 8-8s3.5 8 8 8" fill="none" stroke="var(--neon)" stroke-width="2.2" stroke-linecap="round"/></svg>
       Scout
     </a>
     <nav class="nav-links" aria-label="Main">
@@ -710,7 +728,7 @@ footer { padding-block: 48px 36px; }
   const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   const FRAG = `
 precision highp float;
-uniform vec2 uRes; uniform float uT; uniform vec2 uM; uniform float uMode; uniform float uDpr;
+uniform vec2 uRes; uniform float uT; uniform vec2 uM; uniform vec2 uM2; uniform float uHover; uniform float uVel; uniform float uMode; uniform float uDpr;
 uniform vec3 cPea, cNeon, cCream, cSand;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f*f*(3.-2.*f);
@@ -747,37 +765,58 @@ void main(){
   float u = fract(xw / W);
   float hr = h(vec2(rib, 3.7));
 
-  // Each rib refracts the light behind it like a vertical lens
+  // Pointer: a fast point and a slow trailing point, both stretched vertically to follow the ribs
+  vec2 uv = (fc - .5 * uRes) / uRes.y;
+  vec2 d1 = (uv - uM) * vec2(1., .45);
+  vec2 d2 = (uv - uM2) * vec2(1., .3);
+  float f1 = exp(-dot(d1, d1) * 16.) * uHover;
+  float f2 = exp(-dot(d2, d2) * 9.) * uHover;
+
+  // Each rib refracts the light behind it like a vertical lens, and bends harder near the pointer
   vec2 st = fc / uRes;
   vec2 ss = st;
-  ss.x += (u - .5) * (.045 + .05 * hr);
-  ss.y += (hr - .5) * .05 + (u - .5) * .012;
+  float bend = 1. + 3.2 * f1 + 1.5 * f2;
+  ss.x += (u - .5) * (.045 + .05 * hr) * bend;
+  ss.y += (hr - .5) * .05 + (u - .5) * .012 + (f1 * .05 + f2 * .03) * (hr - .5);
   vec3 sc = scene(ss, t);
   float I = sc.x;
+  if (uMode < .5) I *= .45 + .55 * hr;   // some ribs glow, some stay dim
 
-  vec2 uv = (fc - .5 * uRes) / uRes.y;
-  vec2 uvs = uv + vec2((u - .5) * .07, 0.);
-  I += .45 * exp(-dot(uvs - uM, uvs - uM) * 6.) * (.4 + .6 * sc.y);
+  // Light gathers under the pointer, with a shimmer when it moves quickly
+  float lit = .45 + .55 * sin(u * 3.14159);
+  I += (f1 * .6 + f2 * .28) * lit * (.35 + .65 * sc.y);
+  I += uVel * f2 * .6 * smoothstep(.3, .9, hr + sin(u * 6.283 + t * 3.) * .2);
   I = clamp(I, 0., 1.);
 
-  vec3 shadow = mix(cSand, cPea, .3);
-  float sh = (1. - I) * sc.y * smoothstep(.2, .6, sc.z) * .8;
-  vec3 c = mix(cCream, shadow, sh);
-  c = mix(c, cNeon, I * .95);
-  c = mix(c, mix(cNeon, vec3(1.), .4), smoothstep(.72, 1., I) * .55);
+  vec3 c, shadow;
+  if (uMode < .5) {
+    // Dark: peacock glass with lemon light behind it
+    vec3 deep = cPea * .55;
+    shadow = cPea * .32;
+    c = mix(deep, cPea * 1.25, sc.y * smoothstep(.2, .7, sc.z) * .7);
+    c = mix(c, cNeon * .8, smoothstep(.08, .85, I) * .92);
+    c = mix(c, mix(cNeon, vec3(1.), .3), smoothstep(.75, 1., I) * .6);
+  } else {
+    shadow = mix(cSand, cPea, .3);
+    float sh = (1. - I) * sc.y * smoothstep(.2, .6, sc.z) * .8;
+    c = mix(cCream, shadow, sh);
+    c = mix(c, cNeon, I * .95);
+    c = mix(c, mix(cNeon, vec3(1.), .4), smoothstep(.72, 1., I) * .55);
+  }
 
   // Glass: rounded shading across each rib, a dark seam and a thin highlight
-  float k = .35 + .65 * sc.y;
+  float k = .35 + .65 * max(sc.y, f1);
   float curv = sin(u * 3.14159);
-  c = mix(c, c * mix(.92, 1.03, curv), k);
-  float seam = smoothstep(.03, .0, u) + smoothstep(.97, 1., u);
-  c = mix(c, shadow, seam * .22 * k);
-  c += smoothstep(.04, .0, abs(u - .13)) * .05 * k;
+  c = mix(c, c * mix(.82, 1.06, curv), k);
+  float seam = smoothstep(.035, .0, u) + smoothstep(.965, 1., u);
+  c = mix(c, shadow, seam * .45 * k);
+  c += smoothstep(.04, .0, abs(u - .13)) * (.05 + .12 * f1) * k;
 
   c += (h(fc + fract(t * 7.)) - .5) * .02;
   gl_FragColor = vec4(c, 1.);
 }`;
 
+  const noHover = matchMedia('(hover: none)').matches;
   function makeGL(canvas, mode) {
     const gl = canvas.getContext('webgl', { antialias: true, premultipliedAlpha: false });
     if (!gl) return;
@@ -793,16 +832,23 @@ void main(){
     gl.uniform3fv(U('cPea'), brand.peacock); gl.uniform3fv(U('cNeon'), brand.neon);
     gl.uniform3fv(U('cCream'), brand.cream); gl.uniform3fv(U('cSand'), brand.sand);
     gl.uniform1f(U('uMode'), mode);
-    const uRes = U('uRes'), uT = U('uT'), uM = U('uM'), uDpr = U('uDpr');
-    const s = { mx: 0, my: 2, tx: 0, ty: 2, visible: false, raf: 0, t0: performance.now() };
+    const uRes = U('uRes'), uT = U('uT'), uM = U('uM'), uM2 = U('uM2'), uHover = U('uHover'), uVel = U('uVel'), uDpr = U('uDpr');
+    const s = { mx: .3, my: 0, sx: .3, sy: 0, tx: .3, ty: 0, hv: 0, th: 0, vel: 0, visible: false, raf: 0, t0: performance.now() };
     const draw = now => {
       const dpr = Math.min(devicePixelRatio || 1, 1.5);
       const w = Math.max(1, Math.round(canvas.clientWidth * dpr)), hgt = Math.max(1, Math.round(canvas.clientHeight * dpr));
       if (canvas.width !== w || canvas.height !== hgt) { canvas.width = w; canvas.height = hgt; gl.viewport(0, 0, w, hgt); }
-      s.mx += (s.tx - s.mx) * .04; s.my += (s.ty - s.my) * .04;
+      // Touch screens have no cursor, so a soft light drifts through the glass on its own
+      if (noHover && mode === 0) { const tt = now / 1000; s.tx = .22 * Math.sin(tt * .35) + .05; s.ty = .32 * Math.sin(tt * .23); s.th = .8; }
+      const px = s.mx, py = s.my;
+      s.mx += (s.tx - s.mx) * .14; s.my += (s.ty - s.my) * .14;
+      s.sx += (s.tx - s.sx) * .035; s.sy += (s.ty - s.sy) * .035;
+      s.hv += (s.th - s.hv) * .06;
+      s.vel = Math.min(1, s.vel * .92 + Math.hypot(s.mx - px, s.my - py) * 6);
       gl.uniform2f(uRes, w, hgt); gl.uniform1f(uDpr, dpr);
       gl.uniform1f(uT, reduce ? 20 : (now - s.t0) / 1000 + 20);
-      gl.uniform2f(uM, s.mx, s.my);
+      gl.uniform2f(uM, s.mx, s.my); gl.uniform2f(uM2, s.sx, s.sy);
+      gl.uniform1f(uHover, s.hv); gl.uniform1f(uVel, s.vel);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       if (!reduce && s.visible) s.raf = requestAnimationFrame(draw);
     };
@@ -810,8 +856,10 @@ void main(){
       const r = canvas.getBoundingClientRect();
       s.tx = (e.clientX - r.left - r.width / 2) / r.height;
       s.ty = -(e.clientY - r.top - r.height / 2) / r.height;
+      s.th = 1;
     }, { passive: true });
-    canvas.parentElement.addEventListener('pointerleave', () => { s.ty = 2; });
+    canvas.parentElement.addEventListener('pointerenter', () => { s.th = 1; });
+    canvas.parentElement.addEventListener('pointerleave', () => { s.th = 0; });
     new IntersectionObserver(([e]) => {
       s.visible = e.isIntersecting; cancelAnimationFrame(s.raf);
       s.raf = requestAnimationFrame(draw);
@@ -822,7 +870,8 @@ void main(){
 
   /* ---------- Nav ---------- */
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('solid', scrollY > 8);
+  const heroEl = document.querySelector('.hero');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > heroEl.offsetHeight - 90);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* ---------- Hero feed: fixed three rows, newest replaces oldest in place ---------- */
@@ -920,7 +969,7 @@ void main(){
 
   // Load: headline rises, then the highlighter draws under "second job."
   gsap.from('.hero-main > *', { y: 22, duration: 1.1, ease: 'expo.out', stagger: .07 });
-  gsap.fromTo('.hero-main', { borderTopColor: 'rgba(13,37,51,0)' }, { borderTopColor: 'rgba(13,37,51,.2)', duration: 1.2, ease: 'power2.out' });
+  gsap.fromTo('.hero-main', { borderTopColor: 'rgba(249,245,235,0)' }, { borderTopColor: 'rgba(249,245,235,.22)', duration: 1.2, ease: 'power2.out' });
   gsap.fromTo('.hl', { '--hl': 0 }, { '--hl': 1, duration: 1, ease: 'expo.inOut', delay: .5 });
   gsap.from('.live', { y: 30, duration: 1.2, ease: 'expo.out', delay: .3 });
   gsap.from('.hero > canvas', { opacity: 0, duration: 1.6, ease: 'power2.out' });
