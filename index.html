@@ -6,9 +6,9 @@
 <title>Scout Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Geist:wght@400&display=swap" rel="stylesheet">
 <style>
-  /* One typeface, one weight: Faculty Glyphic Regular.
+  /* Two typefaces, regular weight only: Faculty Glyphic for headlines and numbers, Geist for body text.
      Colour follows the Shipyard direction: solid black, vibrant blue, calm mint. */
   :root{
     --ground:#F1F1F0;
@@ -24,11 +24,12 @@
     --blue-2:#2F64D4;
     --mint:#D6E8DF;
     --mint-ink:#1F3A2E;
-    --font:'Faculty Glyphic', Georgia, serif;
+    --display:'Faculty Glyphic', Georgia, serif;  /* headlines and numbers */
+    --body:'Geist', system-ui, -apple-system, sans-serif;  /* body text */
     --r:22px;
-    /* Type scale: six sizes, Faculty Glyphic Regular only */
-    --t-hero:64px;   /* the one headline number */
-    --t-num:48px;    /* card numbers */
+    /* Type scale: six sizes */
+    --t-hero:48px;   /* the one headline number, the largest size */
+    --t-num:40px;    /* card numbers */
     --t-title:40px;  /* page title */
     --t-head:22px;   /* card titles */
     --t-body:16px;   /* everything you read */
@@ -36,8 +37,10 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0}
-  body{font-family:var(--font);font-weight:400;color:var(--ink);background:var(--ground);font-size:var(--t-body);line-height:1.45;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--body);font-weight:400;color:var(--ink);background:var(--ground);font-size:var(--t-body);line-height:1.45;-webkit-font-smoothing:antialiased}
   b,strong,h1,h2,h3,button{font-weight:400}
+  h1,h2,.big,.goal-nums .v,.count,.layer,.wide .totals b{font-family:var(--display)}
+  .layer small{font-family:var(--body)}
   a{color:inherit;text-decoration:none}
   button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
   :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
@@ -178,7 +181,7 @@
     .nav a{white-space:nowrap;height:40px;font-size:var(--t-small)}
     .nav a small,.nav a .dot{display:none}
     .main{padding:8px 16px 48px}
-    :root{--t-hero:52px;--t-num:40px;--t-title:32px}
+    :root{--t-hero:40px;--t-num:34px;--t-title:32px}
     h1{flex-basis:100%}
     .card:not(.stack),.hero{padding-left:20px;padding-right:20px}
     .layer{padding-left:20px;padding-right:20px}
